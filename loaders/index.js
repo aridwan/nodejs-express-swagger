@@ -1,6 +1,7 @@
 const expressLoader = require('./express');
 const swaggerLoader = require('./swagger');
 const consulLoader = require('./consul');
+require('dotenv').config();
 
 function init(expressApp){
     expressLoader(expressApp);
