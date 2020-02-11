@@ -1,0 +1,33 @@
+---
+settings:
+ env:
+  SERVER: http://localhost:3000
+  CONCURRENCY: 10
+  RAMPSUP: 10s
+  HOLDFOR: 10s
+  DUMP_CSV: ../result
+ artifacts-dir: ../result
+
+execution:
+ - concurrency: ${CONCURRENCY}
+   ramp-up: ${RAMPSUP}
+   hold-for: ${HOLDFOR}
+   scenario: register
+   
+scenarios:
+ register:
+  requests:
+  # - once:
+    - url: ${SERVER}/users/register
+      method: POST
+      label: register
+      headers:
+        Content-Type: application/json
+      body: {
+              "email": "example@example.com",
+              "username": "example",
+              "name": "example",
+              "address": "example street",
+              "phone": "02100000",
+              "password": "example"
+            }
