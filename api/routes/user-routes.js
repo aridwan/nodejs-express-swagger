@@ -12,4 +12,9 @@ router.post('/register',
     }
 )
 
+router.get('/',function(req,res){
+    let user = userModel(db.sequelize, db.Sequelize.DataTypes);
+    userCore.getAll(req, res, user);
+})
+
 module.exports = router;
