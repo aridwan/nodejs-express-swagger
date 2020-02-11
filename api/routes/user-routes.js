@@ -12,9 +12,12 @@ router.post('/register',
     }
 )
 
-router.get('/',function(req,res){
-    let user = userModel(db.sequelize, db.Sequelize.DataTypes);
-    userCore.getAll(req, res, user);
-})
+router.get('/',
+    userValidator.validate('getAllUser'),
+    function(req,res){
+        let user = userModel(db.sequelize, db.Sequelize.DataTypes);
+        userCore.getAll(req, res, user);
+    }
+)
 
 module.exports = router;

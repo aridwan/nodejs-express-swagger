@@ -1,5 +1,6 @@
 const {validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
+var passport = require('../config/strategies');
 
 async function create(req,res,userModel){
     if (!validationResult(req).isEmpty()) {
