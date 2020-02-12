@@ -17,12 +17,13 @@ passport.use(new LocalStrategy({
         
         if (!user){
             return cb("Incorrect email or password",false,null);
-        } 
+        }
+
         if(bcrypt.compareSync(password, user.toJSON().password)){
             return cb(null, user.toJSON(), null);
-        } else {
-            return cb("Incorrect email or password",false,null);
-        }
+        } 
+        
+        return cb("Incorrect email or password",false,null);
     }
 ));
 
@@ -42,11 +43,11 @@ passport.use(new JWTStrategy({
 ))
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+    done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-  done(null, user);
+    done(null, user);
 });
 
 module.exports = passport

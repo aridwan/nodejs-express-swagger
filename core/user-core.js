@@ -8,12 +8,12 @@ async function create(req,res,userModel){
     }
 
     req.body.password = bcrypt.hashSync(req.body.password, 10);
-    try{
-        let response = await userModel.create(req.body);
-        let user = response.toJSON();
-        delete user.password;
+    try{ 
+        let response = await userModel.create(req.body);        
         if (response) {
-            return res.status(201).json({
+            let user = response.toJSON();
+            delete user.password;
+            res.status(201).json({
                 status: true,
                 message: "registered succesfully",
                 data: user
@@ -35,7 +35,7 @@ async function getAll(req,res,userModel){
             attributes: ['id', 'username', 'email', 'name', 'address', 'phone']
         });
         if (response) {
-            return res.status(201).json({
+            res.status(200).json({
                 status: true,
                 message: "OK",
                 data: response
