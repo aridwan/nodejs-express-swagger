@@ -2,9 +2,9 @@
 settings:
  env:
   SERVER: http://localhost:3000
-  CONCURRENCY: 10
-  RAMPSUP: 10s
-  HOLDFOR: 10s
+  CONCURRENCY: 1
+  RAMPSUP: 1s
+  HOLDFOR: 1s
   DUMP_CSV: ../result
  artifacts-dir: ../result
 

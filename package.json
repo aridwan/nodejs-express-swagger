@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha test/**/*.spec.js",
+    "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "start": "node app.js",
     "db:create": "npx sequelize db:create",
     "db:drop": "npx sequelize db:drop",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^7.0.1",
+    "nyc": "^15.0.0",
     "sequelize-cli": "^5.5.1",
     "sinon": "^8.1.1"
   }

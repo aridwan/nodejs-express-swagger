@@ -8,9 +8,11 @@ function load(expressApp){
     
     app.use(express.json());
 
+    const version = '/api/v1';
+
     app.use(router);
-    app.use('/users', userRoute);
-    app.use('/auth', authRoute);
+    app.use(version+'/users', userRoute);
+    app.use(version+'/auth', authRoute);
     
     return app;
   }

@@ -5,10 +5,10 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost:3000/'
+    url: 'http://localhost:3000/api/v1'
     description: 'localhost with docker'
 paths:
-  /auth/login:
+  /auth:
     post:
       tags:
         - auth
@@ -26,10 +26,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Auth'
+                $ref: '#/components/schemas/AuthResponse'
         '404':
           description: 'Not found'
-  /users/register:
+  /auth/registration:
     post:
       tags:
         - auth
@@ -47,7 +47,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Auth'
+                $ref: '#/components/schemas/RegisterResponse'
         '404':
           description: 'Not found'
 components:
@@ -75,10 +75,6 @@ components:
         - phone
         - password
       properties:
-        id:
-          type: integer
-          format: int64
-          example: '1'
         email:
           type: string
           format: email
@@ -100,13 +96,66 @@ components:
           format: password
           example: example
       type: object
-    Auth:
+    RegisterResponseUser:
       properties:
         email:
           type: string
           format: email
           example: example@example.com
+        username:
+          type: string
+          example: example
+        name:
+          type: string
+          example: example
+        address:
+          type: string
+          example: 'example street'
+        phone:
+          type: string
+          example: '02100000'
+      type: object   
+    AuthResponseUser:
+      properties:
+        email:
+          type: string
+          format: email
+          example: example@example.com
+        username:
+          type: string
+          example: example
+        name:
+          type: string
+          example: example
+        address:
+          type: string
+          example: 'example street'
+        phone:
+          type: string
+          example: '02100000'
         token:
           type: string
-          example: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+      type: object    
+    RegisterResponse:
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: 'registered succesfully'
+        data:
+          $ref: '#/components/schemas/RegisterResponseUser'
+      type: object
+    AuthResponse:
+      properties:
+        status:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: 'OK'
+        data:
+          $ref: '#/components/schemas/AuthResponseUser'
       type: object
