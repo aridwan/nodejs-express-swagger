@@ -28,7 +28,9 @@ npm run db:create
 npm run db:migrate
 ```
 
-5. Run App
+5. Rename `.env-example` into `.env`
+
+6. Run App
 ```
 npm start
 ```
