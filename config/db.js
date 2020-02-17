@@ -6,7 +6,7 @@ module.exports = {
         password: process.env.DB_PASSWORD || null,
         database: process.env.DB_NAME,
         host: process.env.DB_HOST || 'localhost',
-        dialect: process.env.DB_DRIVER,
+        dialect: process.env.DB_DRIVER || 'mysql',
         operatorsAliases: false
     }
 }
